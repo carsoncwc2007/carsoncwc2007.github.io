@@ -221,7 +221,7 @@
                 console.log(`total frames: ${flyingJump.frameTotal}`);
                 console.log(`origYOffset : ${origYOffset}`);
             
-            asset.body.offset.x += 0 * _direction;
+            asset.body.offset.x += 10 * _direction;
             asset.body.offset.y -= 30;
             asset.body.y -= 22;
             let onUpdate = function (anim, frame) {
@@ -231,8 +231,8 @@
                     asset.body.offset.y -= 1;
                 } else {
                     console.log(`down y offset: ${asset.body.offset.y}`);
-                    asset.body.offset.x -= 0 * _direction;
-                    asset.body.offset.y += 30;        
+                    asset.body.offset.x -= 1 * _direction;
+                    asset.body.offset.y += 2;
                 }
             };
             
@@ -243,7 +243,7 @@
             setState(_flyingJump);
             asset.animations.currentAnim.onComplete.addOnce(function onComplete() { 
                 console.log('jump complete');
-                asset.body.offset.y += 50;
+                asset.body.offset.y += 24;
                 flyingJump.onUpdate.remove(onUpdate, this);
                 stop();
             }, this);

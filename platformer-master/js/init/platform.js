@@ -4,7 +4,7 @@
     window.opspark.platform = window.opspark.platform || {};
     
     let platform = window.opspark.platform;
-
+    
     /**
      * init: This function initializes the platforms for the level.
      * 
@@ -38,11 +38,10 @@
 
         // example:
         createPlatform(400, 250);
-        createPlatform(170, 460, 0.5);
-        createPlatform(400, 580, 0.3);
-        createPlatform(350, 350, 0.3);
-        createPlatform(250, 400, 0.3);
-        
+        createPlatform(70, 460);
+        createPlatform(70, 360, );
+        createPlatform(70, 250, );
+        createPlatform(70, 570, );
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
     }
