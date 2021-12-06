@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hydrantion nation</title>
+
+
+    <head>
+
+        <style>
+            nav {
+                background: rgb(13, 238, 99);
+
+                height: 600px;
+                max-width: 200px;
+                float: left;
+                margin: bottom 2cm;
+                margin: left 2cm;
+
+            }
+
+            img {
+                border: 10px solid rgb(13, 238, 99);
+                margin-left: 38.5%;
+                margin-bottom: 65%;
+                position: absolute;
+
+
+            }
+
+            div1 {
+                width: 175px;
+                height: 500px;
+                position: absolute;
+                margin: top 2%;
+                border: 10px solid rgb(0, 255, 106);
+                background: rgb(252, 252, 252)
+            }
+
+            div2 {
+                width: 150px;
+                height: 50px;
+                margin-left: 45%;
+                margin-bottom: 80%;
+                border: 010px solid rgb(255, 255, 255)
+            }
+
+            p1 {
+                color: rgb(0, 0, 0);
+                font-size: 30px;
+            }
+
+            p2 {
+                color: black;
+                font-size: 20px;
+            }
+
+            body {
+                color: rgb(255, 255, 255);
+                background-image: url("dogebutmany.jpg");
+            }
+        </style>
+    </head>
+
+<body>
+    <div1>
+
+        <br>
+        <p2 id="upgradeButton">babi doge</p2>
+        <br>
+        <p2 id="totalnumbermemes">amount none </p2>
+        <br>
+        <br>
+        <p2 id="upgradeButton2">small doge</p2>
+        <br>
+        <p2 id="totalnumberposts">amount none </p2>
+        <br>
+        <br>
+        <p2 id="upgradeButton3"> adult doge </p2>
+        <br>
+        <p2 id="totalnumberadults">amount none </p2>
+    </div1>
+    <br>
+    <br>
+    <br>
+    <div2>
+        <p1 id="coin">doge power 0 </p1>
+
+    </div2>
+    <br>
+    <img id="image" src="doge.jpg">
+
+
+
+    <script>
+
+        var image = document.getElementById("image");
+        var coin = document.getElementById("coin");
+        var totalnumbermemes = document.getElementById("totalnumbermemes")
+        var totalnumberposts = document.getElementById("totalnumberposts")
+        var totalnumberadults = document.getElementById("totalnumberadults")
+        var cost1 = 5
+        var cost2 = 100
+        var cost3 = 10000
+        var coin = 0
+        var totalnumbermemes = 0
+        var totalnumberposts = 0
+        var totalnumberadults = 0
+        image.addEventListener("click", imageclick);
+        document.getElementById("upgradeButton").addEventListener("click", upgradeClick)
+        document.getElementById("upgradeButton2").addEventListener("click", upgradeClick2)
+        document.getElementById("upgradeButton3").addEventListener("click", upgradeClick3)
+
+
+        function upgradeClick() {
+            if (coin >= cost1) {
+                setInterval(multipler, 1000);
+                coin = coin - cost1
+                cost1 = cost1 + 5
+                totalnumbermemes = totalnumbermemes + 1
+                document.getElementById("totalnumbermemes").innerText = "amount " + totalnumbermemes
+
+            }
+
+        }
+        function upgradeClick2() {
+            if (coin >= cost2) {
+                setInterval(multipler2, 1000);
+                coin = coin - cost2
+                cost2 = cost2 + 10
+                totalnumberposts = totalnumberposts + 1
+                document.getElementById("totalnumberposts").innerText = "amount " + totalnumberposts
+
+            }
+        }
+        function upgradeClick3() {
+            if (coin >= cost3) {
+                setInterval(multipler3, 1500);
+                coin = coin - cost3
+                cost3 = cost3 + 10
+                totalnumberadults = totalnumberadults + 1
+                document.getElementById("totalnumberadults").innerText = "amount " + totalnumberadults
+
+            }
+        }
+
+        function imageclick() {
+            coin = coin + 1
+            document.getElementById("coin").innerText = "doge power " + coin
+        }
+        function multipler() {
+            coin = coin + 1
+            document.getElementById("coin").innerText = " doge power " + coin
+        }
+        function multipler2() {
+            coin = coin + 5
+            document.getElementById("coin").innerText = " doge power " + coin
+        }
+
+        function multipler3() {
+            coin = coin + 10
+            document.getElementById("coin").innerText = " doge power " + coin
+        }
+
+
+    </script>
+
+
+</body>
