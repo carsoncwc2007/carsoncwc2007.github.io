@@ -20,7 +20,7 @@
             }
 
             img {
-                border: 10px solid rgb(13, 238, 99);
+                border: 10px solid rgb(0, 255, 106);
                 margin-left: 38.5%;
                 margin-bottom: 65%;
                 position: absolute;
@@ -34,15 +34,30 @@
                 position: absolute;
                 margin: top 2%;
                 border: 10px solid rgb(0, 255, 106);
-                background: rgb(252, 252, 252)
+                background: rgb(252, 252, 252);
+                text-align: center;
+            }
+
+            div {
+                width: 200px;
+                margin-left: 41.5%;
+                margin-top: -4%;
+                background: rgb(245, 245, 245);
+                border: 10px solid rgb(0, 255, 106);
+                text-align: center;
+                position: fixed;
+
             }
 
             div2 {
-                width: 150px;
-                height: 50px;
-                margin-left: 45%;
-                margin-bottom: 80%;
-                border: 010px solid rgb(255, 255, 255)
+                width: 175px;
+                height: 500px;
+
+                margin-top: -51px;
+                float: right;
+                border: 10px solid rgb(0, 255, 106);
+                background: rgb(252, 252, 252);
+                text-align: center;
             }
 
             p1 {
@@ -51,6 +66,11 @@
             }
 
             p2 {
+                color: black;
+                font-size: 20px;
+            }
+
+            p3 {
                 color: black;
                 font-size: 20px;
             }
@@ -68,25 +88,44 @@
         <br>
         <p2 id="upgradeButton">babi doge</p2>
         <br>
+        <p2 id="cost1">cost: 10 </p2>
+        <br>
         <p2 id="totalnumbermemes">amount none </p2>
         <br>
         <br>
         <p2 id="upgradeButton2">small doge</p2>
+        <br>
+        <p2 id="cost2">cost: 100</p2>
         <br>
         <p2 id="totalnumberposts">amount none </p2>
         <br>
         <br>
         <p2 id="upgradeButton3"> adult doge </p2>
         <br>
+        <p2 id="cost3">cost: 1000</p2>
+        <br>
         <p2 id="totalnumberadults">amount none </p2>
+
     </div1>
     <br>
     <br>
     <br>
     <div2>
+        <br>
+        <p3 id="babi">babi bottles </p3>
+        <br>
+        <p2 id="costbabi">cost: 1000</p2>
+        <br>
+        <p3 id="babitotal">amount</p3>
+    </div2>
+    <div>
+
         <p1 id="coin">doge power 0 </p1>
 
-    </div2>
+
+
+
+    </div>
     <br>
     <img id="image" src="doge.jpg">
 
@@ -99,9 +138,19 @@
         var totalnumbermemes = document.getElementById("totalnumbermemes")
         var totalnumberposts = document.getElementById("totalnumberposts")
         var totalnumberadults = document.getElementById("totalnumberadults")
-        var cost1 = 5
+        var cost1 = document.getElementById("cost1")
+        var cost2 = document.getElementById("cost2")
+        var cost2 = document.getElementById("cost3")
+        var costbabi = document.getElementById("costbabi")
+        var babitotal= document.getElementById("babitotal")
+        var cost1 = 10
         var cost2 = 100
-        var cost3 = 10000
+        var cost3 = 1000
+        var cost4 = 10000
+        var cost5 = 100000
+        var costbabi = 1000
+        var babitotal = 0
+        var babi = 1
         var coin = 0
         var totalnumbermemes = 0
         var totalnumberposts = 0
@@ -110,7 +159,7 @@
         document.getElementById("upgradeButton").addEventListener("click", upgradeClick)
         document.getElementById("upgradeButton2").addEventListener("click", upgradeClick2)
         document.getElementById("upgradeButton3").addEventListener("click", upgradeClick3)
-
+        document.getElementById("babi").addEventListener("click", upgradeClick1_2)
 
         function upgradeClick() {
             if (coin >= cost1) {
@@ -119,7 +168,7 @@
                 cost1 = cost1 + 5
                 totalnumbermemes = totalnumbermemes + 1
                 document.getElementById("totalnumbermemes").innerText = "amount " + totalnumbermemes
-
+                document.getElementById("cost1").innerText = "cost:" + cost1
             }
 
         }
@@ -130,26 +179,35 @@
                 cost2 = cost2 + 10
                 totalnumberposts = totalnumberposts + 1
                 document.getElementById("totalnumberposts").innerText = "amount " + totalnumberposts
-
+                document.getElementById("cost2").innerText = "cost: " + cost2
             }
         }
         function upgradeClick3() {
             if (coin >= cost3) {
                 setInterval(multipler3, 1500);
                 coin = coin - cost3
-                cost3 = cost3 + 10
+                cost3 = cost3 + 100
                 totalnumberadults = totalnumberadults + 1
                 document.getElementById("totalnumberadults").innerText = "amount " + totalnumberadults
-
+                document.getElementById("cost3").innerText = "cost: " + cost3
             }
         }
-
+        function upgradeClick1_2() {
+            if (coin >= costbabi) {
+                babi = babi + 0.5
+                coin = coin - costbabi
+                costbabi = costbabi + 200
+                babitotal = babitotal + 1
+                document.getElementById("babitotal").innerText = "amount " + babitotal
+                document.getElementById("costbabi").innerText = "cost: " + costbabi
+            }
+        }
         function imageclick() {
             coin = coin + 1
             document.getElementById("coin").innerText = "doge power " + coin
         }
         function multipler() {
-            coin = coin + 1
+            coin = coin + babi
             document.getElementById("coin").innerText = " doge power " + coin
         }
         function multipler2() {
@@ -162,6 +220,10 @@
             document.getElementById("coin").innerText = " doge power " + coin
         }
 
+        function multipler4() {
+            coin = coin + 10
+            document.getElementById("coin").innerText = " doge power " + coin
+        }
 
     </script>
 
