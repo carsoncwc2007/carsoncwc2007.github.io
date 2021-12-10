@@ -6,7 +6,7 @@
 
 
     <head>
-        fuck you child 
+        <p>fuck you child </p>
 
         <style>
             nav {
@@ -61,25 +61,51 @@
                 text-align: center;
             }
 
-            p1 {
-                color: rgb(0, 0, 0);
+            
+
+            p1{
+                background: linear-gradient( #ff0000);
+                -webkit-background-clip: text;
+                color: transparent;
                 font-size: 30px;
+                animation: colorRotate 3s linear 1s infinite;
             }
+            @keyframes colorRotate {
+  0%{
+    color: #ff0000;
+  }
+  10% {
+    color: #ff9900;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #4400ff;
+  }
+  90% {
+    color: #ae00ff;
+
+  }
+  100% {
+    color: #ff0000;
+  }
+}
 
             p2 {
                 color: black;
                 font-size: 20px;
             }
 
-            p3 {
-                color: black;
-                font-size: 20px;
-            }
+
 
             body {
                 color: rgb(255, 255, 255);
                 background-image: url("dogebutmany.jpg");
+
             }
+
+
         </style>
     </head>
 
@@ -113,17 +139,18 @@
     <br>
     <div2>
         <br>
-        <p3 id="babi">babi bottles </p3>
+        <p2 id="babi">babi bottles </p2>
         <br>
         <p2 id="costbabi">cost: 1000</p2>
         <br>
-        <p3 id="babitotal">amount</p3>
+        <p2 id="babitotal">amount</p2>
         <br>
-        <p3 id="childern">trafficed childern </p3>
+        <br>
+        <p2 id="childern">trafficed childern </p2>
         <br>
         <p2 id="costchild">cost: 10000</p2>
         <br>
-        <p3 id="childerntotal">amount</p3>
+        <p2 id="childerntotal">amount</p2>
 
 
 
@@ -152,7 +179,7 @@
         var cost2 = document.getElementById("cost2")
         var cost2 = document.getElementById("cost3")
         var costbabi = document.getElementById("costbabi")
-        var babitotal= document.getElementById("babitotal")
+        var babitotal = document.getElementById("babitotal")
         var cost1 = 10
         var cost2 = 100
         var cost3 = 1000
@@ -234,6 +261,8 @@
             coin = coin + 10
             document.getElementById("coin").innerText = " doge power " + coin
         }
+
+
 
     </script>
 
