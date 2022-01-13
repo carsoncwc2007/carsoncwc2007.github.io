@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #troll {
+            animation-name: spin;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            position: absolute;
+        }
+
+        #cool {
+            margin-top: 400px;
+
+
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg)
+            }
+
+        }
+    </style>
+    <title>race car </title>
+</head>
+
+<body>
+    <img id="troll" src="trollface.png">
+    <img id="cool" src="cool.jpg">
+    <script>
+        var trollface = document.getElementById("troll")
+        var cool = document.getElementById("cool")
+        var pos1 = 0
+        document.addEventListener("keydown", keydownHandler)
+        document.addEventListener("keyup", keyuphandler)
+
+function keyuphandler(e){}
+        function keydownHandler(e) {
+            console.log(e.key)
+            if (e.key === "d") {
+                trollface.style.left = pos1
+                pos1=pos1+"100px"
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

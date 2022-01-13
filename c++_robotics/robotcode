@@ -1,0 +1,121 @@
+// VEX V5 C++ Project with Competition Template
+#include "vex.h"
+using namespace vex;
+
+//#region config_globals
+vex::brain      Brain;
+vex::motor      frontright(vex::PORT15, vex::gearSetting::ratio18_1, true);
+vex::motor      backright(vex::PORT19, vex::gearSetting::ratio18_1, true);
+vex::motor      frontleft(vex::PORT12, vex::gearSetting::ratio18_1, false);
+vex::motor      backleft(vex::PORT18, vex::gearSetting::ratio18_1, false);
+vex::motor      giga_chad_treadmill(vex::PORT20, vex::gearSetting::ratio18_1, false);
+vex::motor      arm_right(vex::PORT16, vex::gearSetting::ratio18_1, true);
+vex::motor      arm_left(vex::PORT17, vex::gearSetting::ratio18_1, false);
+vex::controller con(vex::controllerType::primary);
+vex::motor_group    fulldrive = motor_group(frontright,frontleft,backright,backleft);
+vex::motor_group    rightdrive = motor_group(frontright,backright);
+vex::motor_group    leftdrive = motor_group(frontleft,backleft);
+vex::motor_group    arms= motor_group(arm_right,arm_left);
+//#endregion config_globals
+
+
+
+
+// Creates a competition object that allows access to Competition methods.
+vex::competition Competition;
+
+void pre_auton() {
+    // All activities that occur before competition start
+    // Example: setting initial positions
+
+}
+
+void autonomous() {
+ //
+        arms.resetRotation(); //makes sure the arms motors are reset
+        fulldrive.spin(vex::directionType::fwd, 60, percentUnits::pct);
+        vex::sleep(2.25, vex::timeUnits::sec);
+        Drive.stop(vex::brakeType::brake);
+        // rightdrive.spin(vex::directionType::fwd,20,percentUnits::pct); //turn left
+        //         sleep(.5, sec);
+        // rightdrive.stop(vex::brakeTsideype::brake); //stop the right 
+        fulldrive.spin(vex::directionType::fwd,50,percentUnits::pct); //move forward
+        sleep(1,sec);
+        fulldrive.stop(vex::brakeType::brake); //stop
+         arm_right.spinToPosition(570,vex::rotationUnits::deg); //right arm lowers to the floor
+                sleep(1, sec);
+        arm_right.stop(vex::brakeType::brake); //stop right arm
+        arm_left.spinToPosition(570,vex::rotationUnits::deg); //left arm lowers to the floor
+                sleep(1, sec);
+        arm_left.stop(vex::brakeType::brake); //left arm stops
+        fulldrive.spin(vex::directionType::fwd,50, percentUnits::pct); //move forward
+        sleep(.5, sec);
+        fulldrive.stop(vex::brakeType::brake); //stop
+        arm_right.spinToPosition(350,vex::rotationUnits::deg); //right arm lifts
+        sleep(1, sec);
+        arm_right.stop(vex::brakeType::brake); //right arm stays in lifted position
+        arm_left.spinToPosition(350,vex::rotationUnits::deg); //left arm lifts 
+        sleep(1, sec);
+        arm_left.stop(vex::brakeType::brake); //left arm stops in lifted position
+        fulldrive.spin(vex::directionType::fwd,-50, percentUnits::pct); //move backwards
+        sleep(2.75, sec);
+        fulldrive.stop(vex::brakeType::brake); //stop
+        
+}
+
+
+void drivercontrol() {
+    // Drive control
+    while (true) {
+        frontleft.spin(vex::directionType::fwd, con.Axis3.value()*.46, vex::percentUnits::pct);     //this sets the left side of the robot to the left joystick 3 axis
+        backleft.spin(vex::directionType::fwd, con.Axis3.value()*.46, vex::percentUnits::pct);
+        frontright.spin(vex::directionType::fwd, con.Axis2.value()*.46, vex::percentUnits::pct);    //this sets the right side of the robot to the right joystick 2 axis
+        backright.spin(vex::directionType::fwd, con.Axis2.value()*.46, vex::percentUnits::pct);
+
+    
+        if(con.ButtonR1.pressing()) {                                                                               //if the R1 button is being pressed the treadmill will rotate to where it will pick up rings
+                    giga_chad_treadmill.spin(vex::directionType::fwd,80, vex::percentUnits::pct);
+                }
+                else if(con.ButtonR2.pressing()) {                                                                          //if R2 is pressed then the treadmill will rotate to where the rings will NOT be picked up
+           giga_chad_treadmill.spin(vex::directionType::rev, 80, vex::percentUnits::pct);
+        }
+        else{                                                                                                               //if none of these buttons are pressed the treadmill will not rotate
+            giga_chad_treadmill.stop(brakeType::brake);                                             
+        }
+
+    
+            if(con.ButtonL2.pressing()) {                                                                               //if L2 is pressed then both of the arms will go down 
+            arm_left.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+            arm_right.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+
+        }
+        else if(con.ButtonL1.pressing()) {                                                                          //if L1 is pressed then the arms will lift up
+            arm_left.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+            arm_right.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+
+            
+        }
+
+else{arm_right.stop(brakeType::hold);                                                                               //if no buttons are not pressed then the arms will not move
+arm_left.stop(brakeType::hold);
+}
+        
+        }  
+                    
+
+}
+
+
+int main() {
+    // Do not adjust the lines below
+
+    // Set up (but don't start) callbacks for autonomous and driver control periods.
+    Competition.autonomous(autonomous);
+    Competition.drivercontrol(drivercontrol);
+
+    // Run the pre-autonomous function.
+    pre_auton();
+
+    // Robot Mesh Studio runtime continues to run until all threads and
+    // competition callbacks are finished.
+}
