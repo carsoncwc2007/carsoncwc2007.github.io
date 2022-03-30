@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #display {
+align-content: center;
+      border: 10px, solid, blue;
+      height: 600px;
+      width: 600px;
+margin: left,50%
+    }
+
+
+
+
+    #a {
+      display: none;
+       text-align: center;
+       margin: left,50%;
+    }
+
+    #b {
+      display: none;
+       text-align: center;
+       margin: left,50%;
+    }
+
+    #c {
+      display: none;
+       text-align: center;
+       margin: left,50%;
+    }
+
+    #d {
+      display: none;
+       text-align: center;
+       margin: left,50%;
+    }
+
+    #e {
+      display: none;
+       text-align: center;
+    }
+
+    #f {
+      display: none;
+      margin: left,50%
+    }
+
+    #g {
+      display: none;
+      margin: left,50%
+    }
+
+    #h {
+      display: none;
+      margin: left,50%
+    }
+
+    #i {
+      display: none;
+      margin: left,50%
+    }
+
+    #k {
+      display: none;
+      margin: left,50%
+    }
+  </style>
+
+  <title>anime child viewer</title>
+</head>
+
+<body>
+
+  <div id= "display">
+    <img id="a" src="download (9).jpeg">
+    <img id="b" src="download (10).jpeg">
+    <img id="c" src="download (11).jpeg">
+    <img id="d" src="download (12).jpeg">
+    <img id="e" src="download (8).jpeg">
+    <img id="f" src="download (4).jpg">
+    <img id="g" src="download (3).jpg">
+    <img id="h" src="download (2).jpg">
+    <img id="i" src="download (1).jpg">
+    <img id="k" src="HD-wallpaper-cute-anime-girl-anime-cat-girl-anime-girl-cartoon-cat-girl-cute-anime.jpg">
+
+
+    </div>
+    <script>
+      var display = document.getElementById("display");
+      var a = document.getElementById("a")
+      var b = document.getElementById("b")
+      var c = document.getElementById("c")
+      var d = document.getElementById("d")
+      var e = document.getElementById("e")
+      var f = document.getElementById("f")
+      var g = document.getElementById("g")
+      var h = document.getElementById("h")
+      var i = document.getElementById("i")
+      var k = document.getElementById("k")
+      var f = 1
+      var g = 2
+      var h = 3
+      var i = 4
+      var k = 5
+      var a = 6
+      var b = 7
+      var c = 8
+      var d = 9
+      var e = 10
+      var max = 5
+      var min = 1
+      var press = 0
+      var displayed =0
+      document.addEventListener("keydown", keydownHandler)
+      //var pic = Math.floor(Math.random()*10)
+      function keydownHandler(e) {
+        console.log(e.key)
+
+
+        if (e.key === "d") {
+          console.log(Math.floor(Math.random() * (max+1)))
+          press = press + 1
+          if (Math.floor(Math.random() * max) === f) {
+            document.getElementById("f").style.display = "block"
+          }
+          else {
+            document.getElementById("f").style.display = "none"
+          }
+          if (Math.floor(Math.random() * (max+1) === g)) {
+            document.getElementById("g").style.display = "block"
+          }
+          else {
+            document.getElementById("g").style.display = "none"
+          }
+          if (Math.floor(Math.random() * (max+1)+1) === h) {
+            document.getElementById("h").style.display = "block"
+          }
+          else {
+            document.getElementById("h").style.display = "none"
+          }
+          if (Math.floor(Math.random() * (max+1)) === i) {
+            document.getElementById("i").style.display = "block"
+          }
+          else {
+            document.getElementById("i").style.display = "none"
+          }
+          if (Math.floor(Math.random() * (max+1)) === k) {
+            document.getElementById("k").style.displaye = "block"
+          }
+          else {
+            document.getElementById("k").style.display = "none"
+          }
+
+          if (press >= 5) {
+            if (Math.floor(Math.random() * (max+1)) === a) {
+              document.getElementById("a").style.display = "block"
+            }
+            else {
+              document.getElementById("a").style.display = "none"
+            }
+            if (Math.floor(Math.random() * (max+1)) === b) {
+              document.getElementById("b").style.display = "block"
+            }
+            else {
+              document.getElementById("b").style.display = "none"
+            }
+            if (Math.floor(Math.random() * (max+1)) === c) {
+              document.getElementById("c").style.display = "block"
+            }
+            else {
+              document.getElementById("c").style.display = "none"
+            }
+            if (Math.floor(Math.random() * (max+1)) === d) {
+              document.getElementById("d").style.display = "block"
+            }
+            else {
+              document.getElementById("d").style.display = "none"
+            }
+            if (Math.floor(Math.random() * (max+1)) === e) {
+              document.getElementById("e").style.displaye = "block"
+            }
+            else {
+              document.getElementById("e").style.display = "none"
+            }
+          }
+        }
+
+      }
+
+
+
+    </script>
+</body>
+
+</html>

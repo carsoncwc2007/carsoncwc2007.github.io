@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<title>circleshaha</title>
+<style>
+  body{
+    background-color: aqua;
+  }
+  #canvas {
+    border: 10px, solid, blue;
+    margin-left: 28.5%;
+    position: absolute; 
+    background-color: aliceblue;
+  }
+</style>
+</head>
+
+<body>
+
+  <canvas id="canvas" width="700" height="700"></canvas>
+  <p1>so as you can see the balls are boucing current 
+    number of balls</p1>
+  <script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var posx = [0, 130, 30, 40, 60,80,75,50,400,450,550,454]
+    var posy = [0, 50, 240, 330, 400,100,200,150,500,300,450,370]
+    var speedx = [5,5,5,5,5,-5,-5,-5,-5,-5,5]
+    var speedy = [5,5,5,5,5,-5,-5,-5,-5,-5,5]
+    var max = 700
+    var min = 0
+    var size
+    var numberofballs =25
+    //var varia=-1
+
+        for (var i = 0; i < numberofballs; i = i + 1) {  
+          ctx.beginPath()
+        ctx.arc(posx[i], posy[i], 25, 0, 2 * Math.PI)
+        //      ctx.fillRect(posx[1], posy[1], 50, 50)
+        ctx.fill()
+      posx.push(Math.floor(Math.random() * (max - min) + min));
+      posy.push(Math.floor(Math.random() * (max - min) + min)); 
+       speedx.push(5); 
+         speedy.push(5); 
+          }
+    setInterval(movey, 50)
+    function movey() {
+      ctx.clearRect(0, 0, 700, 700)
+      for (var i = 0; i < numberofballs; i = i + 1) {
+        ctx.beginPath()
+        ctx.arc(posx[i], posy[i], 25, 0, 2 * Math.PI)
+        //      ctx.fillRect(posx[1], posy[1], 50, 50)
+        ctx.fill()
+        posy[i] = posy[i] + speedy[i]
+        posx[i] = posx[i] + speedx[i]
+posx.push
+
+        //posy[1]=posy[1]+ 5
+        //posx[1] = posx[1] + 5
+
+      
+      if (posy[i] >= 700) {
+        speedy[i] = speedy[i] * -1
+        speedy[i]=speedy[i]+ -1
+        
+      }
+      if (posx[i] >= 700) {
+        speedx[i] = speedx[i] * -1
+        speedx[i]=speedx[i] + -1
+      }
+      if (posy[i] <= 0) {
+        speedy[i] = speedy[i] * -1
+        speedy[i]=speedy[i]+1
+      }
+      if (posx[i] <= 0) {
+       speedx[i] = speedx[i] * -1
+       speedx[i]=speedx[i]+1
+      }
+    }
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

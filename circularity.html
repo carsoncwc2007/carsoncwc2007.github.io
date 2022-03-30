@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<title>circleshaha</title>
+<style>
+  #canvas {
+    border: 10px, solid, blue;
+    margin-left: 37.5%;
+    position: absolute;
+  }
+</style>
+</head>
+
+<body>
+  <canvas id="canvas" width="600" height="600"></canvas>
+  <script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var posx = 0
+    var posy = 0
+    var speedx = 1
+    var speedy = 1
+    //var varia=-1
+    setInterval(movey, 50)
+    function movey() {
+      ctx.clearRect(0, 0, 600, 600)
+      ctx.fillRect(posx, posy, 50, 50)
+      ctx.
+
+
+        posy = posy + speedy
+      posx = posx + speedx
+      if (posx >= 600) {
+        speedx = speedx * -1
+      }
+      if (posx <= 0) {
+
+        speedx = speedx * -1
+      }
+
+      if (posy >= 600) {
+
+        speedy = speedy * -1
+      }
+
+      if (posy <= 0) {
+
+        speedy = speedy * -1
+      }
+
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

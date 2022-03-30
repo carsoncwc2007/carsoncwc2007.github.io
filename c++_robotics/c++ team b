@@ -1,0 +1,113 @@
+// VEX V5 C++ Project with Competition Template
+#include "vex.h"
+using namespace vex;
+
+// Defines Brain + Controller
+vex::brain          Brain;
+vex::controller     con;
+
+// Defines Motors
+
+vex::motor          frontright_wheel(vex::PORT12, vex::gearSetting::ratio18_1, true); // Info:    Port = 19, GearRatio = 18_1, Direction = Normal        [Side] = Right
+vex::motor          backright_wheel(vex::PORT13, vex::gearSetting::ratio18_1, true); // Info:    Port = 19, GearRatio = 18_1, Direction = Normal        [Side] = Right
+
+vex::motor          frontleft(vex::PORT19, vex::gearSetting::ratio18_1, false); // Info:    Port = 12, GearRatio = 18_1, Direction = Inverse        [Side] = Left
+vex::motor backleft(vex::PORT18, vex::gearSetting::ratio18_1, false); // Info:    Port = 12, GearRatio = 18_1, Direction = Inverse        [Side] = Left
+vex::motor          lonefter_right(vex::PORT11,vex::gearSetting::ratio18_1,true);
+vex::motor          lonefter_left(vex::PORT17,vex::gearSetting::ratio18_1,false);
+vex::motor          DA_BIG_KLAW(vex::PORT6, vex::gearSetting::ratio18_1, false);
+
+// Defines Groups
+motor_group         arm_group(lonefter_right,lonefter_left); // Controls the motors at the same time
+motor_group         wheel_group(frontright_wheel,frontleft,backleft,backright_wheel); // Controls the motors at the same time
+
+// Creates a competition object that allows access to Competition methods.
+vex::competition Competition;
+
+// Speed of robot
+double robot_speed = 0.5;
+
+// All activities that occur before competition start
+void pre_auton() {
+    
+}
+
+// Autonomous Code
+void autonomous() {
+    
+    // Autonomous: 15 seconds
+    
+    wheel_group.spin(vex::directionType::fwd, 50, percentUnits::pct); // Drive forward for 1.5 seconds, then brake
+    vex::sleep(1.5, vex::timeUnits::sec);
+    wheel_group.stop(vex::brakeType::brake);
+    
+    arm_group.setVelocity(50, vex::velocityUnits::pct); // Spin arm (w/ rings on it) into alliance goal [Speed = 30]
+    arm_group.spinToPosition(-315, vex::rotationUnits::deg);
+    vex::sleep(0.1, vex::timeUnits::sec);
+    
+    wheel_group.spin(vex::directionType::rev, 50, percentUnits::pct); // Drive backwards for 0.25 seconds, then brake
+    vex::sleep(0.25, vex::timeUnits::sec);
+    wheel_group.stop(vex::brakeType::brake); 
+    
+    arm_group.spinToPosition(-200, vex::rotationUnits::deg); // Spin arm to a normal position
+    
+    wheel_group.spin(vex::directionType::rev, 50, percentUnits::pct);
+    vex::sleep(1.5, vex::timeUnits::sec);
+    wheel_group.stop(vex::brakeType::brake);
+    
+
+}
+
+// Drive Controls
+void drivercontrol() {
+     // Constantely loops through drive control code to detect input from controller and update motors
+    while (true) {
+        
+        // Drive control for robot
+frontleft.spin(vex::directionType::fwd, con.Axis3.value()*.55 /* Speed of robot */, percentUnits::pct); // Right wheels
+        frontright_wheel.spin(vex::directionType::fwd, con.Axis2.value()*.55/* Speed of robot */, percentUnits::pct); // Left wheels
+        backleft.spin(vex::directionType::fwd, con.Axis3.value()*.55 /* Speed of robot */, percentUnits::pct); // Right wheels
+        backright_wheel.spin(vex::directionType::fwd, con.Axis2.value()*.55/* Speed of robot */, percentUnits::pct); // Left wheels
+        // Detects input form controller to move arms up
+        if(con.ButtonL1.pressing()) {
+           arm_group.spin(vex::directionType::fwd, 50 /* Speed of arm */, percentUnits::pct);
+        }
+        // Detects input from controller to move arm down
+        else if(con.ButtonL2.pressing()) {
+            arm_group.spin(vex::directionType::rev , 50 /* Speed of arm */, percentUnits::pct);
+        }
+        // Stops arm if no imput from controller is found
+        else{
+            arm_group.stop(vex::brakeType::brake); // Sutble Brake
+        }
+                //claw
+
+            //open claw
+if(con.ButtonR1.pressing()){
+DA_BIG_KLAW.spin(vex::directionType::fwd,80,vex::percentUnits::pct);
+}
+else if(con.ButtonR2.pressing()){
+DA_BIG_KLAW.spin(vex::directionType::rev,80,vex::percentUnits::pct);
+}
+else {
+    DA_BIG_KLAW.stop(brakeType::brake);
+}
+        
+
+        }
+    }
+
+
+int main() {
+    // Do not adjust the lines below
+
+    // Set up (but don't start) callbacks for autonomous and driver control periods.
+    Competition.autonomous(autonomous);
+    Competition.drivercontrol(drivercontrol);
+
+    // Run the pre-autonomous function.
+    pre_auton();
+
+    // Robot Mesh Studio runtime continues to run until all threads and
+    // competition callbacks are finished.
+}

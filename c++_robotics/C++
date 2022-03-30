@@ -1,0 +1,170 @@
+// VEX V5 C++ Project with Competition Template
+#include "vex.h"
+using namespace vex;
+
+//#region config_globals
+vex::brain      Brain;
+
+vex::motor      backright(vex::PORT9, vex::gearSetting::ratio18_1, true);
+
+vex::motor      backleft(vex::PORT3, vex::gearSetting::ratio18_1, false);
+
+vex::motor      liftright(vex::PORT20, vex::gearSetting::ratio18_1, true);
+vex::motor      liftleft(vex::PORT12, vex::gearSetting::ratio18_1, false);
+vex::motor      lonk(vex::PORT5, vex::gearSetting::ratio18_1, false);
+vex::motor      clonk(vex::PORT16, vex::gearSetting::ratio18_1, false);
+vex::motor      liftright2(vex::PORT8, vex::gearSetting::ratio18_1, true);
+vex::motor      liftleft2(vex::PORT4, vex::gearSetting::ratio18_1, false);
+vex::controller con(vex::controllerType::primary);
+vex::motor_group    fulldrive = motor_group(backright,backleft);
+
+// vex::motor_group    gigaarms=motor_group(liftright,liftleft);
+
+//#endregion config_globals
+
+
+
+
+// Creates a competition object that allows access to Competition methods.
+vex::competition Competition;
+
+void pre_auton() {
+    // All activities that occur before competition start
+    // Example: setting initial positions
+
+}
+
+void autonomous() {
+ //
+
+               
+ 
+//             //   
+\
+         fulldrive.spin(vex::directionType::fwd, 60, percentUnits::pct);//move forward
+         vex::sleep(1.50, vex::timeUnits::sec);//for2.25 secs
+         fulldrive.stop(vex::brakeType::brake);//stops mavement after 2.25 secened passed
+         // rightdrive.spin(vex::directionType::fwd,20,percentUnits::pct); //turn left
+         //         sleep(.5, sec);
+         // rightdrive.stop(vex::brakeTsideype::brake); //stop the right 
+         fulldrive.spin(vex::directionType::fwd,50,percentUnits::pct); //move forward
+sleep(.25,sec);
+         fulldrive.stop(vex::brakeType::brake); //stop
+        
+        
+
+          clonk.spinToPosition(570,vex::rotationUnits::deg); //right arm lowers to the floor
+                  sleep(1, sec);
+          clonk.stop(vex::brakeType::brake); //stop right arm
+
+         fulldrive.spin(vex::directionType::fwd,50, percentUnits::pct); //move forward
+         sleep(.5, sec);
+         fulldrive.stop(vex::brakeType::brake); //stop
+
+         fulldrive.spin(vex::directionType::fwd,-50, percentUnits::pct); //move backwards
+         sleep(2.75, sec);
+         fulldrive.stop(vex::brakeType::brake); //stop
+        
+}
+
+
+void drivercontrol() {
+    // Drive control
+    while (true) {
+        
+        backleft.spin(vex::directionType::rev, con.Axis2.value()*.55, vex::percentUnits::pct);
+       
+        backright.spin(vex::directionType::rev, con.Axis3.value()*.55, vex::percentUnits::pct);
+
+    
+        if(con.ButtonUp.pressing()) {                                                                               //if the R1 button is being pressed the treadmill will rotate to where it will pick up rings
+                    clonk.spin(vex::directionType::fwd,50, vex::percentUnits::pct);
+                }
+                else if(con.ButtonDown.pressing()) {                                                                          //if R2 is pressed then the treadmill will rotate to where the rings will NOT be picked up
+          clonk.spin(vex::directionType::rev, 50, vex::percentUnits::pct);
+        }
+        else{                                                                                                               //if none of these buttons are pressed the treadmill will not rotate
+            clonk.stop(brakeType::brake);                                             
+        }
+if(con.ButtonX.pressing()){
+lonk.spin(vex::directionType::fwd,80,vex::percentUnits::pct);
+}
+else if(con.ButtonB.pressing()){
+lonk.spin(vex::directionType::rev,80,vex::percentUnits::pct);
+}
+else {
+    lonk.stop(brakeType::brake);
+}
+
+
+    
+            if(con.ButtonL2.pressing()) {                                                                               //if L2 is pressed then both of the gigaarms
+        //will go down 
+            liftleft.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+            liftright.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+
+        }
+        else if(con.ButtonL1.pressing()) {                                                                          //if L1 is pressed then the gigaarms
+    //will lift up
+            liftleft.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+            liftright.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+
+            
+        }
+
+else{liftright.stop(brakeType::hold);                                                                               //if no buttons are not pressed then the gigaarmswill not move
+liftleft.stop(brakeType::hold);
+}
+        
+        
+                    
+
+
+
+if(con.ButtonDown.pressing()){
+clonk.spin(vex::directionType::fwd,80,vex::percentUnits::pct);
+}
+else if(con.ButtonB.pressing()){
+clonk.spin(vex::directionType::rev,80,vex::percentUnits::pct);
+}
+else {
+    clonk.stop(brakeType::brake);
+}
+
+
+    
+            if(con.ButtonR2.pressing()) {                                                                               //if L2 is pressed then both of the gigaarms
+        //will go down 
+            liftleft2.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+            liftright2.spin(vex::directionType::fwd,30, vex::percentUnits::pct);
+
+        }
+        else if(con.ButtonR1.pressing()) {                                                                          //if L1 is pressed then the gigaarms
+    //will lift up
+            liftleft2.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+            liftright2.spin(vex::directionType::rev,30, vex::percentUnits::pct);
+
+            
+        }
+
+else{liftright2.stop(brakeType::hold);                                                                               //if no buttons are not pressed then the gigaarmswill not move
+liftleft2.stop(brakeType::hold);
+}
+        
+    }  
+}               
+
+
+int main() {
+    // Do not adjust the lines below
+
+    // Set up (but don't start) callbacks for autonomous and driver control periods.
+    Competition.autonomous(autonomous);
+    Competition.drivercontrol(drivercontrol);
+
+    // Run the pre-autonomous function.
+    pre_auton();
+
+    // Robot Mesh Studio runtime continues to run until all threads and
+    // competition callbacks are finished.
+}

@@ -13,8 +13,27 @@
 
         #cool {
             margin-top: 400px;
+            position: absolute;
 
 
+        }
+
+        #when {
+            height: 125px;
+            width: 450px;
+            font-size: 50px;
+            background-color: cadetblue;
+            position: absolute;
+            text-align: center;
+            border: 10px solid darkblue;
+            
+
+            display: none;
+        }
+        #reset{
+            border: 5px solid rgb(3, 247, 255)
+        }        #timers {
+            text-align: center;
         }
 
         @keyframes spin {
@@ -28,25 +47,68 @@
 </head>
 
 <body>
+
+    <p id="timers">timers </p>
     <img id="troll" src="trollface.png">
     <img id="cool" src="cool.jpg">
+    <div id="when">win
+
+        <div id="reset">click here to reset</div>
+
+
+    </div>
     <script>
         var trollface = document.getElementById("troll")
         var cool = document.getElementById("cool")
         var pos1 = 0
+        var pos2 = 0
+        var timers = document.getElementById("timers")
+        var finshing = 1000
+        var thingy_thatdoestimer = 0
+        var timers = 0
+        var winners = document.getElementById("when")
+        var reset = document.getElementById("reset")
+        document.addEventListener("click",reseter)
         document.addEventListener("keydown", keydownHandler)
-        document.addEventListener("keyup", keyuphandler)
 
-function keyuphandler(e){}
+
+
+        setInterval(times, thingy_thatdoestimer)
+        function times() {
+
+            timers = timers + .01
+            document.getElementById("timers").innerText = ("timers ") + timers
+        }
         function keydownHandler(e) {
             console.log(e.key)
+
             if (e.key === "d") {
-                trollface.style.left = pos1
-                pos1=pos1+"100px"
+                trollface.style.left = pos1 + "px"
+                pos1 = pos1 + 50
+                thingy_thatdoestimer = thingy_thatdoestimer + 1000
+            }
+            if (e.key === "m") {
+                cool.style.left = pos2 + "px"
+                pos2 = pos2 + 50
+                thingy_thatdoestimer = thingy_thatdoestimer + 1000
+            }
+            if (pos1 >= finshing) {
+
+                document.getElementById("when").style.display = "block"
+                thingy_thatdoestimer = thingy_thatdoestimer - 1000
+            }
+            if (pos2 >= finshing) {
+                document.getElementById("when").style.display = "block"
+                thingy_thatdoestimer = thingy_thatdoestimer - 1000
+
             }
 
-
         }
+function reseter(){
+
+    location.reload()
+}
+
 
 
     </script>
