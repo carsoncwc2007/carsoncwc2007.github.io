@@ -3,81 +3,157 @@
 
 <title>circleshaha</title>
 <style>
-  body{
+  body {
     background-color: aqua;
   }
+
+  #death {
+    border: 10px, solid, blue;
+    display: none;
+  }
+
   #canvas {
     border: 10px, solid, blue;
-    margin-left: 28.5%;
-    position: absolute; 
+    margin-left: 18.5%;
+    position: absolute;
     background-color: aliceblue;
+
   }
 </style>
 </head>
 
 <body>
+  <div><p4 id=death>click here to reset</p4></div>
+  <br>
+  <canvas id="canvas" width="1200" height="673"></canvas>
+  <p1>so as you can see the balls are boucing </p1>
+  <br>
+  <p2 id=ballcount>the total number of balls is</p2>
+  <br>
+  <p3 id=points> you have grown by </p3>
 
-  <canvas id="canvas" width="700" height="700"></canvas>
-  <p1>so as you can see the balls are boucing current 
-    number of balls</p1>
+
   <script>
     var canvas = document.getElementById("canvas")
     var ctx = canvas.getContext("2d")
-    var posx = [0, 130, 30, 40, 60,80,75,50,400,450,550,454]
-    var posy = [0, 50, 240, 330, 400,100,200,150,500,300,450,370]
-    var speedx = [5,5,5,5,5,-5,-5,-5,-5,-5,5]
-    var speedy = [5,5,5,5,5,-5,-5,-5,-5,-5,5]
-    var max = 700
-    var min = 0
-    var size
-    var numberofballs =25
-    //var varia=-1
+    var points = document.getElementById("points")
+    var death = document.getElementById("death")
 
-        for (var i = 0; i < numberofballs; i = i + 1) {  
-          ctx.beginPath()
-        ctx.arc(posx[i], posy[i], 25, 0, 2 * Math.PI)
-        //      ctx.fillRect(posx[1], posy[1], 50, 50)
-        ctx.fill()
-      posx.push(Math.floor(Math.random() * (max - min) + min));
-      posy.push(Math.floor(Math.random() * (max - min) + min)); 
-       speedx.push(5); 
-         speedy.push(5); 
-          }
-    setInterval(movey, 50)
+    var posx = []
+    var posy = []
+    var speedx = []
+    var speedy = []
+    var maxX = 673
+    var minX = 0
+    var maxY = 1200
+    var minY = 0
+    var sizemax = 30
+    var sizemin = 15
+    var size = []
+    var color = []
+    var commax = 255
+    var comin = 0
+    var numberofballs = 2500
+    var mousex = 0
+    var mousey = 0
+    var mouser = 20
+    var windowl = 673
+    var windowW = 1200
+    var a = 0
+    var b = 0
+    var distance = 1
+    var points = 0
+    var death = 0
+
+    document.addEventListener("mousemove", mouse)
+   // document.addEventListener("click", death)
+    //var varia=-1
+    function mouse(event) {
+      mousex = event.offsetX
+      mousey = event.offsetY
+    }
+    function death(){
+
+location.reload()
+}
+    for (var i = 0; i < numberofballs; i = i + 1) {
+
+      posx.push(Math.floor(Math.random() * (maxX - minX) + minX));
+      posy.push(Math.floor(Math.random() * (maxY - minY) + minY));
+      color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
+      speedx.push(Math.random() * 7 - 5);
+      speedy.push(Math.random() * 7 - 5);
+      size.push(Math.floor(Math.random() * (sizemax - sizemin) + sizemin));
+      document.getElementById("ballcount").innerText = " the total number of balls is " + numberofballs
+    }
+    setInterval(movey, 1)
     function movey() {
-      ctx.clearRect(0, 0, 700, 700)
+      ctx.clearRect(0, 0, windowW, windowl)
+
       for (var i = 0; i < numberofballs; i = i + 1) {
+        ctx.fillStyle = color[i]
         ctx.beginPath()
-        ctx.arc(posx[i], posy[i], 25, 0, 2 * Math.PI)
+        ctx.arc(posx[i], posy[i], size[i], 0, 2 * Math.PI)
         //      ctx.fillRect(posx[1], posy[1], 50, 50)
         ctx.fill()
         posy[i] = posy[i] + speedy[i]
         posx[i] = posx[i] + speedx[i]
-posx.push
 
+        a = posx[i] - mousex
+        b = posy[i] - mousey
+        distance = Math.sqrt(a * a + b * b)
+        if (distance <= mouser + size[i]) {
+         /*bigger*/ if (mouser >= size[i]) {
+            posy.splice([i], 1, [i])
+            posx.splice([i], 1, [i])
+            numberofballs = numberofballs - 1
+            mouser = mouser + 1
+            points = points + 1
+            document.getElementById("points").innerText = " you have grown by " + points
+          }
+       /*death*/ if (mouser < size[i]) {
+            mouser = mouser * 0
+
+
+         }
+
+        }
         //posy[1]=posy[1]+ 5
         //posx[1] = posx[1] + 5
 
-      
-      if (posy[i] >= 700) {
-        speedy[i] = speedy[i] * -1
-        speedy[i]=speedy[i]+ -1
-        
+
+        if (posy[i] >= windowl) {
+          //speedy[i] = speedy[i] * -1
+          // speedy[i]=speedy[i]+ -1
+          posy[i] = -6
+        }
+        if (posx[i] >= windowW) {
+          speedx[i] = speedx[i] * -1
+          //speedx[i]=speedx[i] + -1
+        }
+        //  if (posy[i] <= 0) {
+        //    speedy[i] = speedy[i] * -1
+        //   //speedy[i]=speedy[i]+1
+        //  }
+        if (posx[i] <= 0) {
+          speedx[i] = speedx[i] * -1
+          //speedx[i]=speedx[i]+1
+
+        }
+
+        if (mouser >= 0) {
+
+          document.getElementById("death").style.display = "block"
+        }
+
       }
-      if (posx[i] >= 700) {
-        speedx[i] = speedx[i] * -1
-        speedx[i]=speedx[i] + -1
-      }
-      if (posy[i] <= 0) {
-        speedy[i] = speedy[i] * -1
-        speedy[i]=speedy[i]+1
-      }
-      if (posx[i] <= 0) {
-       speedx[i] = speedx[i] * -1
-       speedx[i]=speedx[i]+1
-      }
+      ctx.fillStyle = "blue"
+      ctx.beginPath()
+      ctx.arc(mousex, mousey, mouser, 0, 2 * Math.PI)
+      ctx.fill()
+
     }
-    }
+
 
 
 
