@@ -1,3 +1,2 @@
 # carsoncwc2007.github.io
-hydration nation home page
-hello and welcome to hydration nation 
+hello i do dumb stuff because i get bored
