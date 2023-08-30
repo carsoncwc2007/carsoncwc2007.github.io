@@ -2,7 +2,12 @@
 <html>
 
 <head>
-    <title>hydrantion nation</title>
+    <title>
+
+        Her Dear John missive flapped unambiguously in the windy breeze, hanging like a pizza menu on the doorknob of my
+        mind.
+
+        Lisa Kluber, San Francisco, CA</title>
 
 
 
@@ -10,59 +15,40 @@
 
 <body>
 
-    stuck on todo 7
+
 
     <div id="all-contents">
         <nav>
-            <h1>staggiti </h1>
-            <ul>
-                <li>
-                    <a href="index.html">home</a>
-                </li>
-                <li>
-                    <a href="portfilo.html">portfolilo </a>
-                </li>
-                <li>
-                    <a href="bouncy_boxy.html"> time waster</a> 
-                </li>
-                <li>
-                    
-                    <a href="doge_clicker.html"> doge clicker</a> 
-                </li>
-            </ul>
+
         </nav>
         <main>
             <div class="sidebar">
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqe8LQAS3O03A249tCs11lPrGGYiOpPpGUnQ&amp;usqp=CAU" />
 
             </div>
             <div class="content">
-                <h2>carson capdeboscq</h2>
-                <p>student at fountbleu high</p>
-            </div>
-        </div>
+                <h2></h2>
+<p>        </p>
 
-        </main>
+            </div>
+    </div>
+
+    </main>
     </div>
     <div class="interests">
 
-        <h3>spatgitti </h3>
 
-        <ul>
-
-
-            <li>thing 1</li>
-            <li>thingy 2</li>
-            <li>thign 3 </li>
-
-        </ul>
         <style>
             body {
-                background: rgb(125, 198, 205);
-                color: rgb(45, 45, 45);
+                background-blend-mode: colorRotate;
+                -webkit-animation: bgcolor 20s infinite;
+
                 padding: 10px;
                 font-family: arial;
+
+                animation-name: colorRatate;
+                animation-duration: 15ms;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
             }
 
             #all-contents {
@@ -71,12 +57,7 @@
             }
 
             /* navigation menu */
-            nav {
-                background: rgb(239, 80, 41);
-                margin: 0 auto;
-                display: flex;
-                padding: 10px;
-            }
+
 
             nav h1 {
                 display: flex;
@@ -86,13 +67,65 @@
                 margin: 0;
             }
 
+            ul {}
+
+
+
             nav ul {
                 list-style-image: none;
             }
 
             nav li {
-                display: inline-block;
+
                 padding: 0 10px;
+                background: transparent;
+                -webkit-background-clip: text;
+
+                font-size: 30px;
+                animation: colorRotate 3s linear 1s infinite;
+            }
+
+
+
+            @keyframes colorRotate {
+                0% {
+                    color: #ff0000;
+                }
+
+                10% {
+                    color: #ff9900;
+                }
+
+                50% {
+                    color: #00ff00;
+                }
+
+                75% {
+                    color: #4400ff;
+                }
+
+                90% {
+                    color: #ae00ff;
+
+                }
+
+                100% {
+                    color: #ff0000;
+                }
+            }
+
+          
+            
+
+            @keyframes texts {
+                0% {
+                    background-color: #000000;
+                }
+
+
+                100% {
+                    background-color: #ffffff;
+                }
             }
 
             nav a {
@@ -101,32 +134,29 @@
             }
 
             /* main container area beneath menu */
-            main {
-                background: rgb(245, 238, 219);
-                display: flex;
-            }
-
-            .sidebar {
-                margin-right: 25px;
-                padding: 10px;
-            }
-
-            .sidebar img {
-                width: 200px;
-            }
-
-            .content {
-                flex: 1;
-                padding: 15px;
-            }
-
-            h2,
-            h3 {
-                margin: 0px;
-            }
+ 
         </style>
 
     </div>
 </body>
 
 </html>
+
+<script>
+
+    setInterval(important, 1)
+
+    function important() {
+
+        var text = document.getElementById('importantDoNotDelet').innerText
+        var test = text.split(" ")
+        text = text.substring(test[0].length, text.length)
+        text = text + " " + test[0]
+        document.getElementById('importantDoNotDelet').innerText = text
+
+        document.title = test[0]
+
+
+    }
+
+</script>

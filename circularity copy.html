@@ -23,10 +23,12 @@
 </head>
 
 <body>
-  <div><p4 id=death>click here to reset</p4></div>
+  <div>
+    <p4 id=death>click here to reset</p4>
+  </div>
   <br>
   <canvas id="canvas" width="1200" height="673"></canvas>
-  <p1>so as you can see the balls are boucing </p1>
+  <p1>so as you can see the balls are boucing hehe balls funny balls </p1>
   <br>
   <p2 id=ballcount>the total number of balls is</p2>
   <br>
@@ -43,9 +45,9 @@
     var posy = []
     var speedx = []
     var speedy = []
-    var maxX = 673
+    var maxX = 800
     var minX = 0
-    var maxY = 1200
+    var maxY = 1500
     var minY = 0
     var sizemax = 30
     var sizemin = 15
@@ -53,9 +55,9 @@
     var color = []
     var commax = 255
     var comin = 0
-    var numberofballs = 2500
-    var mousex = 0
-    var mousey = 0
+    var numberofballs = 150
+    var mousex = -1000
+    var mousey = -300
     var mouser = 20
     var windowl = 673
     var windowW = 1200
@@ -64,25 +66,24 @@
     var distance = 1
     var points = 0
     var death = 0
+    var alive = true
 
     document.addEventListener("mousemove", mouse)
-   // document.addEventListener("click", death)
+    // document.addEventListener("click", death)
     //var varia=-1
     function mouse(event) {
       mousex = event.offsetX
       mousey = event.offsetY
-    }
-    function death(){
+        }
 
-location.reload()
-}
+    
     for (var i = 0; i < numberofballs; i = i + 1) {
 
       posx.push(Math.floor(Math.random() * (maxX - minX) + minX));
       posy.push(Math.floor(Math.random() * (maxY - minY) + minY));
       color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
-      speedx.push(Math.random() * 7 - 5);
-      speedy.push(Math.random() * 7 - 5);
+      speedx.push(Math.random() * (6 - 3));
+      speedy.push(Math.random() * (6 - 3));
       size.push(Math.floor(Math.random() * (sizemax - sizemin) + sizemin));
       document.getElementById("ballcount").innerText = " the total number of balls is " + numberofballs
     }
@@ -111,11 +112,12 @@ location.reload()
             points = points + 1
             document.getElementById("points").innerText = " you have grown by " + points
           }
+        //if(numberofballs===){}
        /*death*/ if (mouser < size[i]) {
             mouser = mouser * 0
 
-
-         }
+alive===false
+          }
 
         }
         //posy[1]=posy[1]+ 5
@@ -141,10 +143,30 @@ location.reload()
 
         }
 
-        if (mouser >= 0) {
 
+
+      }
+      if (mouser === 0) {
+         alive === false
+        // ctx.font = "30px Arial";
+        // ctx.fillStyle = "blue"
+        // ctx.fillText("ha you died", 600, 100)
+        // ctx.fillText(points, 600, 50)
+        // document.getElementById("death").style.display = "block"
+        // ctx.textAlign = "center"
+      }
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "blue"
+      ctx.fillText(points, 600, 50)
+
+      if (alive === false) {
+          ctx.font = "30px Arial";
+          ctx.fillStyle = "blue"
+          ctx.fillText("ha you died", 600, 100)
+        ctx.fillText(points, 600, 50)
           document.getElementById("death").style.display = "block"
-        }
+          ctx.textAlign = "center"
+
 
       }
       ctx.fillStyle = "blue"

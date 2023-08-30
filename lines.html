@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <style>
+    #body {
+      background-color: blue;
+    }
+
+
+
+
+
+    #canvas {
+      border: 10px, solid, blue;
+      margin-left: 18.5%;
+      position: absolute;
+      background-color: aliceblue;
+
+    }
+  </style>
+
+  <title>snake</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="1200" height="673"></canvas>
+  <script>
+    var posx = 0
+    var posy = 0
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    document.addEventListener("keydown", keydownHandler)
+    setInterval(keydownHandler,1)
+    function keydownHandler(e) {
+      console.log(e.key)
+      ctx.clearRect(0, 0, 1200, 673)
+
+      if (e.key === "w") {
+        posy = posy + -10
+
+      }
+      if (e.key === "d") {
+
+        posx = posx + 10
+
+      }
+
+      if (e.key === "s") {
+
+        posy = posy + 10
+
+      }
+      if (e.key === "a") {
+
+        posx = posx + -10
+
+      }
+      ctx.beginPath()
+
+      ctx.fillRect(posx, posy, 50, 50)
+      ctx.fill()
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

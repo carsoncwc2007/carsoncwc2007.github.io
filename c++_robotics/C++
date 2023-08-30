@@ -76,7 +76,7 @@ void drivercontrol() {
        
         backright.spin(vex::directionType::rev, con.Axis3.value()*.55, vex::percentUnits::pct);
 
-    
+    backleft.spin(vex::directiontype:;rev,con.Axis2.value)
         if(con.ButtonUp.pressing()) {                                                                               //if the R1 button is being pressed the treadmill will rotate to where it will pick up rings
                     clonk.spin(vex::directionType::fwd,50, vex::percentUnits::pct);
                 }

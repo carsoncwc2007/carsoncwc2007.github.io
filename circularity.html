@@ -11,44 +11,185 @@
 </style>
 </head>
 
+<!DOCTYPE html>
+<html>
+
+<title>circleshaha</title>
+<style>
+  body {
+    background-color: aqua;
+  }
+
+  #death {
+    border: 10px, solid, blue;
+    display: none;
+  }
+
+  #canvas {
+    border: 10px, solid, blue;
+    margin-left: 18.5%;
+    position: absolute;
+    background-color: aliceblue;
+
+  }
+</style>
+</head>
+
 <body>
-  <canvas id="canvas" width="600" height="600"></canvas>
+  <div>
+    <p4 id=death>click here to reset</p4>
+  </div>
+  <br>
+  <canvas id="canvas" width="1200" height="673"></canvas>
+  <p1>so as you can see the balls are boucing </p1>
+  <br>
+  <p2 id=ballcount>the total number of balls is</p2>
+  <br>
+  <p3 id=points> you have grown by </p3>
+
+
   <script>
     var canvas = document.getElementById("canvas")
     var ctx = canvas.getContext("2d")
-    var posx = 0
-    var posy = 0
-    var speedx = 1
-    var speedy = 1
+    var points = document.getElementById("points")
+    var death = document.getElementById("death")
+
+    var posx = []
+    var posy = []
+    var speedx = []
+    var speedy = []
+    var maxX = 673
+    var minX = 0
+    var maxY = 1200
+    var minY = 0
+    var sizemax = 30
+    var sizemin = 15
+    var size = []
+    var color = []
+    var commax = 255
+    var comin = 0
+    var numberofballs = 1500
+    var mousex = -1000
+    var mousey = -300
+    var mouser = 20
+    var windowl = 673
+    var windowW = 1200
+    var a = 0
+    var b = 0
+    var distance = 1
+    var points = 0
+    var death = 0
+    var alive = false
+
+    document.addEventListener("mousemove", mouse)
+    // document.addEventListener("click", death)
     //var varia=-1
-    setInterval(movey, 50)
+    function mouse(event) {
+      mousex = event.offsetX
+      mousey = event.offsetY
+    }
+    function death() {
+
+      location.reload()
+    }
+    for (var i = 0; i < numberofballs; i = i + 1) {
+
+      posx.push(Math.floor(Math.random() * (maxX - minX) + minX));
+      posy.push(Math.floor(Math.random() * (maxY - minY) + minY));
+      color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
+      speedx.push(Math.random() * (6 - 3));
+      speedy.push(Math.random() * (6 - 3));
+      size.push(Math.floor(Math.random() * (sizemax - sizemin) + sizemin));
+      document.getElementById("ballcount").innerText = " the total number of balls is " + numberofballs
+    }
+    setInterval(movey, 1)
     function movey() {
-      ctx.clearRect(0, 0, 600, 600)
-      ctx.fillRect(posx, posy, 50, 50)
-      ctx.
+      ctx.clearRect(0, 0, windowW, windowl)
+
+      for (var i = 0; i < numberofballs; i = i + 1) {
+        ctx.fillStyle = color[i]
+        ctx.beginPath()
+        ctx.arc(posx[i], posy[i], size[i], 0, 2 * Math.PI)
+        //      ctx.fillRect(posx[1], posy[1], 50, 50)
+        ctx.fill()
+        posy[i] = posy[i] + speedy[i]
+        posx[i] = posx[i] + speedx[i]
+
+        a = posx[i] - mousex
+        b = posy[i] - mousey
+        distance = Math.sqrt(a * a + b * b)
+        if (distance <= mouser + size[i]) {
+         /*bigger*/ if (mouser >= size[i]) {
+            posy.splice([i], 1, [i])
+            posx.splice([i], 1, [i])
+            numberofballs = numberofballs - 1
+            mouser = mouser + 1
+            points = points + 1
+            document.getElementById("points").innerText = " you have grown by " + points
+          }
+       /*death*/ if (mouser < size[i]) {
+            mouser = mouser * 0
 
 
-        posy = posy + speedy
-      posx = posx + speedx
-      if (posx >= 600) {
-        speedx = speedx * -1
+          }
+
+        }
+        //posy[1]=posy[1]+ 5
+        //posx[1] = posx[1] + 5
+
+
+        if (posy[i] >= windowl) {
+          //speedy[i] = speedy[i] * -1
+          // speedy[i]=speedy[i]+ -1
+          posy[i] = -6
+        }
+        if (posx[i] >= windowW) {
+          speedx[i] = speedx[i] * -1
+          //speedx[i]=speedx[i] + -1
+        }
+        //  if (posy[i] <= 0) {
+        //    speedy[i] = speedy[i] * -1
+        //   //speedy[i]=speedy[i]+1
+        //  }
+        if (posx[i] <= 0) {
+          speedx[i] = speedx[i] * -1
+          //speedx[i]=speedx[i]+1
+
+        }
+
+
+
       }
-      if (posx <= 0) {
+      if (mouser === 0) {
+// alive === false
+// ctx.font = "30px Arial";
+//         ctx.fillStyle = "blue"
+//         ctx.fillText("ha you died", 600, 100)
+//       ctx.fillText(points, 600, 50)
+//         document.getElementById("death").style.display = "block"
+//         ctx.textAlign = "center"
+//       }
+//       ctx.font = "30px Arial";
+//       ctx.fillStyle = "blue"
+//       ctx.fillText(points, 600, 50)
 
-        speedx = speedx * -1
+//         if(alive === false){
+      //   ctx.font = "30px Arial";
+      //   ctx.fillStyle = "blue"
+      //   ctx.fillText("ha you died", 600, 100)
+      // ctx.fillText(points, 600, 50)
+      //   document.getElementById("death").style.display = "block"
+      //   ctx.textAlign = "center"
+
+
       }
-
-      if (posy >= 600) {
-
-        speedy = speedy * -1
-      }
-
-      if (posy <= 0) {
-
-        speedy = speedy * -1
-      }
+      // ctx.fillStyle = "blue"
+      // ctx.beginPath()
+      // ctx.arc(mousex, mousey, mouser, 0, 2 * Math.PI)
+      // ctx.fill()
 
     }
+
 
 
 
